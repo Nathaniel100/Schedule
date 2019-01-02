@@ -13,10 +13,11 @@ import javax.inject.Singleton
   modules = [
     AndroidSupportInjectionModule::class,
     AndroidInjectionModule::class,
-    AppModule::class
+    AppModule::class,
+    ActivityBindingModule::class
   ]
 )
-interface AppComponent : AndroidInjector<ScheduleApp>{
+interface AppComponent : AndroidInjector<ScheduleApp> {
 
   @Component.Builder
   abstract class Builder : AndroidInjector.Builder<ScheduleApp>()

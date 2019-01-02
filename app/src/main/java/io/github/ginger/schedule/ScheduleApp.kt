@@ -1,6 +1,5 @@
 package io.github.ginger.schedule
 
-import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
