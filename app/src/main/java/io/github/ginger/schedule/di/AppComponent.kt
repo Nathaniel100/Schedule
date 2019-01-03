@@ -14,7 +14,8 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     AndroidInjectionModule::class,
     AppModule::class,
-    ActivityBindingModule::class
+    ActivityBindingModule::class,
+    ViewModelModule::class
   ]
 )
 interface AppComponent : AndroidInjector<ScheduleApp> {

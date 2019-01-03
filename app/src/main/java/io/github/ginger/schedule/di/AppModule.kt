@@ -4,9 +4,10 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import io.github.ginger.schedule.domain.model.Block
-import io.github.ginger.schedule.domain.model.BlockData
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Named
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
 
 @Module
 class AppModule {
@@ -15,5 +16,12 @@ class AppModule {
 
   @Singleton
   @Provides
-  fun provideBlocks(): Array<Block> = BlockData.blocks
+  @Named("IO")
+  fun provideIoCoroutineContext(): CoroutineContext = Dispatchers.IO
+
+  @Singleton
+  @Provides
+  @Named("UI")
+  fun provideUiCoroutineContext(): CoroutineContext = Dispatchers.Main
+
 }

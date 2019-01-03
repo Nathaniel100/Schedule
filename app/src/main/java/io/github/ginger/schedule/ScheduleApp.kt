@@ -13,6 +13,7 @@ class ScheduleApp : DaggerApplication() {
     super.onCreate()
     // Timber
     Timber.plant(Timber.DebugTree())
+    Timber.tag("ScheduleApp")
     // Threeten
     AndroidThreeTen.init(this)
   }

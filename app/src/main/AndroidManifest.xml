@@ -12,7 +12,10 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
-    <activity android:name=".ui.MainActivity">
+    <activity
+      android:label="@string/title_activity_schedule"
+      android:name=".ui.schedule.ScheduleActivity"
+      android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
