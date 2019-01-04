@@ -2,6 +2,8 @@ package io.github.ginger.schedule.util
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.*
 
 inline fun <reified VM : ViewModel> FragmentActivity.viewModelProvider(
@@ -29,4 +31,19 @@ suspend fun <R> safeApiCall(call: suspend () -> R): Result<R> {
   } catch (e: Exception) {
     Result.Error(e)
   }
+}
+
+/** Convenience for callbacks/listeners whose return value indicates an event was consumed. */
+inline fun consume(f: () -> Unit): Boolean {
+  f()
+  return true
+}
+
+/**
+ * Allows calls like
+ *
+ * `supportFragmentManager.inTransaction { add(...) }`
+ */
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
+  beginTransaction().func().commit()
 }

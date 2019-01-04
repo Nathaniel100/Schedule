@@ -10,6 +10,7 @@ import io.github.ginger.schedule.util.map
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.threeten.bp.ZoneId
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.coroutines.CoroutineContext
@@ -22,6 +23,7 @@ class ScheduleViewModel @Inject constructor(
 
   private val loadAgendaResult = MutableLiveData<Result<List<Block>>>()
   val agenda: LiveData<List<Block>>
+  val timeZoneId: ZoneId = ZoneId.systemDefault()
 
   init {
     agenda = loadAgendaResult.map {

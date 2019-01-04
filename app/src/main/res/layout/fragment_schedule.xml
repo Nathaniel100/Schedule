@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:orientation="vertical"
-  app:layoutManager="LinearLayoutManager"
-  >
+<layout>
+  <data>
+    <variable
+      name="viewModel"
+      type="io.github.ginger.schedule.ui.schedule.ScheduleViewModel"/>
+  </data>
+  <androidx.recyclerview.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/spacing_normal"
+    android:paddingBottom="@dimen/schedule_page_padding_bottom"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    app:layoutManager="LinearLayoutManager"
+    app:zoneId="@{viewModel.timeZoneId}"
+    app:agendaItems="@{viewModel.agenda}"
+    >
 
-</androidx.recyclerview.widget.RecyclerView>
+  </androidx.recyclerview.widget.RecyclerView>
+</layout>
