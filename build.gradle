@@ -40,4 +40,11 @@ ext {
     threetenabpVersion = "1.0.5"
     threetenbpVersion = "1.3.6"
     timberVersion = "4.7.0"
+
+    junitVersion = "4.12"
+    mockitoVersion = "2.10.0"
+    mockitoKotlinVersion = "2.1.0"
+
+    supportRunnerVersion = "1.0.2"
+    espressoVersion = "3.0.2"
 }

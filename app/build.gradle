@@ -46,6 +46,7 @@ dependencies {
     // Architecture Components
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+    testImplementation "androidx.arch.core:core-testing:$lifecycleVersion"
 
     // Dagger
     implementation "com.google.dagger:dagger-android:$daggerVersion"
@@ -56,13 +57,14 @@ dependencies {
     // Utils
     // Date and time API for Java.
     implementation "com.jakewharton.threetenabp:threetenabp:$threetenabpVersion"
+    testImplementation "org.threeten:threetenbp:$threetenbpVersion"
 
     // Log
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
-
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    androidTestImplementation "com.android.support.test:runner:$supportRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
 }
