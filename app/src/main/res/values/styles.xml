@@ -25,4 +25,14 @@
     <item name="android:textStyle">bold</item>
   </style>
 
+  <style name="Widget.IOSched" parent="@android:style/Widget"/>
+
+  <style name="Widget.IOSched.AgendaHeader">
+    <item name="android:width">@dimen/session_keyline</item>
+    <item name="android:paddingTop">@dimen/spacing_normal</item>
+    <item name="android:textColor">?colorPrimary</item>
+    <item name="dateTextSize">@dimen/time_header_hour_text_size</item>
+    <item name="dayTextSize">@dimen/time_header_meridiem_text_size</item>
+  </style>
+
 </resources>

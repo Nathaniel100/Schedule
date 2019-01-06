@@ -11,6 +11,8 @@ import dagger.android.support.DaggerFragment
 import io.github.ginger.schedule.databinding.FragmentScheduleBinding
 import io.github.ginger.schedule.domain.model.Block
 import io.github.ginger.schedule.util.activityViewModel
+import io.github.ginger.schedule.util.clearDecoration
+import io.github.ginger.schedule.widget.ScheduleAgendaHeaderDecoration
 import org.threeten.bp.ZoneId
 import javax.inject.Inject
 
@@ -45,9 +47,18 @@ fun setAgenda(recyclerView: RecyclerView, agendaItems: List<Block>?, zoneId: Zon
   if (recyclerView.adapter == null) {
     recyclerView.adapter = ScheduleAgendaAdapter(zoneId)
   }
-  val adapter = (recyclerView.adapter as ScheduleAgendaAdapter).apply {
+  (recyclerView.adapter as ScheduleAgendaAdapter).apply {
     this.submitList(agendaItems ?: emptyList())
     this.timeZoneId = zoneId
   }
-  // TODO add ItemDecoration
+
+  recyclerView.clearDecoration()
+  agendaItems?.let {
+    if (it.isNotEmpty()) {
+      recyclerView.addItemDecoration(ScheduleAgendaHeaderDecoration(recyclerView.context, it))
+    }
+
+  }
+
+
 }

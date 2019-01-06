@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.*
+import androidx.recyclerview.widget.RecyclerView
 
 inline fun <reified VM : ViewModel> FragmentActivity.viewModelProvider(
   viewModelFactory: ViewModelProvider.Factory
@@ -46,4 +47,12 @@ inline fun consume(f: () -> Unit): Boolean {
  */
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
   beginTransaction().func().commit()
+}
+
+fun RecyclerView.clearDecoration() {
+  if (itemDecorationCount > 0) {
+    for (i in itemDecorationCount - 1 downTo 0) {
+      removeItemDecorationAt(i)
+    }
+  }
 }

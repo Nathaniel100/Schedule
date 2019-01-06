@@ -58,6 +58,7 @@ dependencies {
     // Date and time API for Java.
     implementation "com.jakewharton.threetenabp:threetenabp:$threetenabpVersion"
     testImplementation "org.threeten:threetenbp:$threetenbpVersion"
+    implementation "androidx.core:core-ktx:$ktxVersion"
 
     // Log
     implementation "com.jakewharton.timber:timber:$timberVersion"
