@@ -30,10 +30,9 @@ class ScheduleViewModel @Inject constructor(
       (it as? Result.Success)?.data ?: emptyList()
     }
     CoroutineScope(ui).launch {
-      val result = withContext(io) {
+      loadAgendaResult.value = withContext(io) {
         loadAgendaUseCase(Unit)
       }
-      loadAgendaResult.value = result
     }
   }
 }

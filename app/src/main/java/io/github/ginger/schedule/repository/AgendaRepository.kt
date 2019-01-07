@@ -1,13 +1,17 @@
 package io.github.ginger.schedule.repository
 
+import androidx.annotation.WorkerThread
 import io.github.ginger.schedule.domain.model.Block
+import io.github.ginger.schedule.repository.db.AgendaDatabase
 import org.threeten.bp.ZonedDateTime
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class AgendaRepository @Inject constructor() {
-  private val blocks by lazy {
+open class AgendaRepository @Inject constructor(
+  private val db: AgendaDatabase
+) {
+  val blocks by lazy {
     listOf(
       Block(
         title = "Breakfast",
@@ -238,5 +242,25 @@ open class AgendaRepository @Inject constructor() {
     )
   }
 
-  fun getAgenda(): List<Block> = blocks
+  @WorkerThread
+  fun getAgenda(): List<Block> {
+    db.agendaDao().clear()
+    db.agendaDao().insertAgendaItems(blocks)
+    return db.agendaDao().getAgendaItems()
+  }
+
+  @WorkerThread
+  fun insertAgendaItems(agenda: List<Block>) {
+    db.agendaDao().insertAgendaItems(agenda)
+  }
+
+  @WorkerThread
+  fun deleteAgendaItem(block: Block) {
+    db.agendaDao().deleteAgendaItem(block)
+  }
+
+  @WorkerThread
+  fun clear() {
+    db.agendaDao().clear()
+  }
 }

@@ -27,8 +27,7 @@ fun <T, R> LiveData<T>.map(body: (T) -> R): LiveData<R> {
 
 suspend fun <R> safeApiCall(call: suspend () -> R): Result<R> {
   return try {
-    val r = call()
-    Result.Success(r)
+    Result.Success(call())
   } catch (e: Exception) {
     Result.Error(e)
   }
