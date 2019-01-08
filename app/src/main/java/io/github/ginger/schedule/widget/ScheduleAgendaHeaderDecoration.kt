@@ -39,7 +39,7 @@ class ScheduleAgendaHeaderDecoration(
 
   init {
     val attrs =
-      context.obtainStyledAttributes(R.style.Widget_IOSched_AgendaHeader, R.styleable.DateHeader)
+      context.obtainStyledAttributes(R.style.Widget_Schedule_AgendaHeader, R.styleable.DateHeader)
     textPaint = TextPaint(TextPaint.ANTI_ALIAS_FLAG).apply {
       color = attrs.getColorOrThrow(R.styleable.DateHeader_android_textColor)
       textSize = attrs.getDimensionOrThrow(R.styleable.DateHeader_dateTextSize)

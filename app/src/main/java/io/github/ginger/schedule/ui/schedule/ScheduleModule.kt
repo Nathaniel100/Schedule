@@ -15,6 +15,10 @@ abstract class ScheduleModule {
   @ContributesAndroidInjector
   abstract fun scheduleFragment(): ScheduleFragment
 
+  @FragmentScoped
+  @ContributesAndroidInjector
+  abstract fun addAgendaFragment(): AddAgendaFragment
+
   @Binds
   @IntoMap
   @ViewModelKey(ScheduleViewModel::class)

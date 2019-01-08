@@ -11,9 +11,6 @@ interface AgendaDao {
   fun getAgendaItems(): List<Block>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insertAgendaItem(vararg items: Block)
-
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insertAgendaItems(agenda: List<Block>)
 
   @Delete

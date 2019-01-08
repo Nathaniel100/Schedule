@@ -68,7 +68,7 @@
       android:layout_marginEnd="@dimen/margin_normal"
       android:layout_marginRight="@dimen/margin_normal"
       android:text="@{agenda.title}"
-      android:textAppearance="@style/TextAppearance.IOSched.AgendaTitle"
+      android:textAppearance="@style/TextAppearance.Schedule.AgendaTitle"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@id/icon"
       app:layout_constraintTop_toTopOf="parent"/>
@@ -78,7 +78,7 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:paddingBottom="@dimen/agenda_block_padding_vert"
-      android:textAppearance="@style/TextAppearance.IOSched.ListSecondary"
+      android:textAppearance="@style/TextAppearance.Schedule.ListSecondary"
       app:endTime="@{agenda.endTime}"
       app:layout_constraintEnd_toEndOf="@id/agenda_title"
       app:layout_constraintStart_toStartOf="@id/agenda_title"

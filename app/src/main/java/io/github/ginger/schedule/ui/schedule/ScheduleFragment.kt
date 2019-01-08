@@ -8,10 +8,14 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
+import io.github.ginger.schedule.R
 import io.github.ginger.schedule.databinding.FragmentScheduleBinding
 import io.github.ginger.schedule.domain.model.Block
+import io.github.ginger.schedule.ui.schedule.ScheduleActivity.Companion.FRAGMENT_CONTAINER
+import io.github.ginger.schedule.util.activityViewId
 import io.github.ginger.schedule.util.activityViewModel
 import io.github.ginger.schedule.util.clearDecoration
+import io.github.ginger.schedule.util.inTransaction
 import io.github.ginger.schedule.widget.ScheduleAgendaHeaderDecoration
 import org.threeten.bp.ZoneId
 import javax.inject.Inject
@@ -37,6 +41,11 @@ class ScheduleFragment : DaggerFragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+    activityViewId<View>(R.id.fab_add).setOnClickListener {
+      requireActivity().supportFragmentManager.inTransaction {
+        replace(FRAGMENT_CONTAINER, AddAgendaFragment()).addToBackStack(null)
+      }
+    }
     viewModel = activityViewModel(viewModelFactory)
     binding.viewModel = viewModel
   }

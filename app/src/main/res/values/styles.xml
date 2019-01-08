@@ -17,17 +17,21 @@
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-  <style name="TextAppearance.IOSched.ListSecondary" parent="@style/TextAppearance.AppCompat.Body1">
+  <style name="TextAppearance.Schedule.ListSecondary" parent="@style/TextAppearance.AppCompat.Body1">
     <item name="android:textColor">?android:textColorSecondary</item>
   </style>
 
-  <style name="TextAppearance.IOSched.AgendaTitle" parent="@style/TextAppearance.AppCompat.Body1">
+  <style name="TextAppearance.Schedule.AgendaTitle" parent="@style/TextAppearance.AppCompat.Body1">
     <item name="android:textStyle">bold</item>
   </style>
 
-  <style name="Widget.IOSched" parent="@android:style/Widget"/>
+  <style name="TextAppearance.Schedule.Input" parent="@style/TextAppearance.AppCompat.Medium">
+    <item name="android:textStyle">bold</item>
+  </style>
 
-  <style name="Widget.IOSched.AgendaHeader">
+  <style name="Widget.Schedule" parent="@android:style/Widget"/>
+
+  <style name="Widget.Schedule.AgendaHeader">
     <item name="android:width">@dimen/session_keyline</item>
     <item name="android:paddingTop">@dimen/spacing_normal</item>
     <item name="android:textColor">?colorPrimary</item>

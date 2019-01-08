@@ -1,7 +1,6 @@
 package io.github.ginger.schedule.ui.schedule
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
 import io.github.ginger.schedule.R
 import io.github.ginger.schedule.util.inTransaction
@@ -18,14 +17,9 @@ class ScheduleActivity : DaggerAppCompatActivity() {
     setContentView(R.layout.activity_schedule)
     setSupportActionBar(toolbar)
 
-    fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        .setAction("Action", null).show()
-    }
-
     if (savedInstanceState == null) {
       supportFragmentManager.inTransaction {
-        add(FRAGMENT_CONTAINER, ScheduleFragment(), "ScheduleFragment")
+        add(FRAGMENT_CONTAINER, ScheduleFragment())
       }
     }
 

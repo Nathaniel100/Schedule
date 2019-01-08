@@ -244,8 +244,8 @@ open class AgendaRepository @Inject constructor(
 
   @WorkerThread
   fun getAgenda(): List<Block> {
-    db.agendaDao().clear()
-    db.agendaDao().insertAgendaItems(blocks)
+//    db.agendaDao().clear()
+//    db.agendaDao().insertAgendaItems(blocks)
     return db.agendaDao().getAgendaItems()
   }
 

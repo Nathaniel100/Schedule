@@ -8,6 +8,7 @@
   tools:context=".ui.schedule.ScheduleActivity">
 
   <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/appbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/AppTheme.AppBarOverlay">
@@ -21,14 +22,16 @@
 
   </com.google.android.material.appbar.AppBarLayout>
 
-  <include layout="@layout/content_schedule"/>
+  <include layout="@layout/content_schedule" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/fab"
+    android:id="@+id/fab_add"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/fab_margin"
     android:layout_gravity="bottom|end"
-    app:srcCompat="@android:drawable/ic_dialog_email"/>
+    app:fabSize="auto"
+    app:srcCompat="@drawable/ic_add"
+    />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
