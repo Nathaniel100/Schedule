@@ -23,7 +23,7 @@
       android:layout_height="48dp"
       android:layout_marginTop="20dp"
       android:hint="@string/title"
-      android:text="@={viewModel.title}"
+      android:text="@={viewModel.addAgendaModel.title}"
       android:textAppearance="@style/TextAppearance.Schedule.Input"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
       android:layout_height="48dp"
       android:layout_marginTop="20dp"
       android:hint="@string/start_time"
-      android:text="@={viewModel.startTime}"
+      android:text="@={viewModel.addAgendaModel.startTime}"
       android:textAppearance="@style/TextAppearance.Schedule.Input"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +47,23 @@
       android:layout_height="48dp"
       android:layout_marginTop="20dp"
       android:hint="@string/end_time"
-      android:text="@={viewModel.endTime}"
+      android:text="@={viewModel.addAgendaModel.endTime}"
       android:textAppearance="@style/TextAppearance.Schedule.Input"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/input_start_time"
+      />
+    <EditText
+      android:id="@+id/input_type"
+      android:layout_width="0dp"
+      android:layout_height="48dp"
+      android:layout_marginTop="20dp"
+      android:hint="@string/type"
+      android:text="@={viewModel.addAgendaModel.type}"
+      android:textAppearance="@style/TextAppearance.Schedule.Input"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/input_end_time"
       />
   </androidx.constraintlayout.widget.ConstraintLayout>
 

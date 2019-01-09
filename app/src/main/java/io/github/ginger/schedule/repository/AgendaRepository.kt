@@ -1,9 +1,11 @@
 package io.github.ginger.schedule.repository
 
+import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import io.github.ginger.schedule.domain.model.Block
 import io.github.ginger.schedule.repository.db.AgendaDatabase
+import io.github.ginger.schedule.util.map
 import org.threeten.bp.ZonedDateTime
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -243,9 +245,13 @@ open class AgendaRepository @Inject constructor(
     )
   }
 
-  @WorkerThread
+  @MainThread
   fun getAgenda(): LiveData<List<Block>> {
-    return db.agendaDao().getAgendaItems()
+    return db.agendaDao().getAgendaItems().map {
+      it.sortedWith(Comparator { l, r ->
+        l.startTime.compareTo(r.startTime)
+      })
+    }
   }
 
   @WorkerThread

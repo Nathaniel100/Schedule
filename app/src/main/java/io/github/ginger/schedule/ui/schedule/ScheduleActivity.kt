@@ -9,6 +9,8 @@ import io.github.ginger.schedule.util.inTransaction
 import io.github.ginger.schedule.util.showToast
 import io.github.ginger.schedule.util.viewModelProvider
 import kotlinx.android.synthetic.main.activity_schedule.*
+import org.threeten.bp.DateTimeException
+import timber.log.Timber
 import javax.inject.Inject
 
 class ScheduleActivity : DaggerAppCompatActivity() {
@@ -25,7 +27,13 @@ class ScheduleActivity : DaggerAppCompatActivity() {
     super.onCreate(savedInstanceState)
     viewModel = viewModelProvider(viewModelFactory)
     viewModel.errorEvent.observe(this, Observer {
-      it?.run { showToast(localizedMessage) }
+      it?.run {
+        Timber.e(this)
+        when(this) {
+          is DateTimeException -> showToast(getString(R.string.error_time_format))
+          else -> showToast(localizedMessage)
+        }
+      }
     })
     setContentView(R.layout.activity_schedule)
     setSupportActionBar(toolbar)
