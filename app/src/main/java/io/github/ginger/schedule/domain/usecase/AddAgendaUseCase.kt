@@ -4,11 +4,12 @@ import io.github.ginger.schedule.domain.model.Block
 import io.github.ginger.schedule.repository.AgendaRepository
 import javax.inject.Inject
 
-class AddAgendaUseCase @Inject constructor(
+open class AddAgendaUseCase @Inject constructor(
   private val repository: AgendaRepository
-) : BaseUseCase<Block, List<Block>>() {
-  override suspend fun execute(parameters: Block): List<Block> {
+) : BaseUseCase<Block, Unit>() {
+
+  override suspend fun execute(parameters: Block) {
     repository.insertAgendaItems(listOf(parameters))
-    return repository.getAgenda()
   }
+
 }

@@ -1,5 +1,6 @@
 package io.github.ginger.schedule.repository.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import io.github.ginger.schedule.domain.model.Block
 
@@ -8,7 +9,7 @@ import io.github.ginger.schedule.domain.model.Block
 interface AgendaDao {
 
   @Query("SELECT * FROM agenda")
-  fun getAgendaItems(): List<Block>
+  fun getAgendaItems(): LiveData<List<Block>>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insertAgendaItems(agenda: List<Block>)

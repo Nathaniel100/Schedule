@@ -42,6 +42,10 @@ fun <T, R> LiveData<T>.map(body: (T) -> R): LiveData<R> {
   return Transformations.map(this, body)
 }
 
+fun <T, R> LiveData<T>.switchMap(body: (T) -> LiveData<R>): LiveData<R> {
+  return Transformations.switchMap(this, body)
+}
+
 suspend fun <R> safeApiCall(call: suspend () -> R): Result<R> {
   return try {
     Result.Success(call())

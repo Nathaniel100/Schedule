@@ -1,6 +1,7 @@
 package io.github.ginger.schedule.repository
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import io.github.ginger.schedule.domain.model.Block
 import io.github.ginger.schedule.repository.db.AgendaDatabase
 import org.threeten.bp.ZonedDateTime
@@ -243,9 +244,7 @@ open class AgendaRepository @Inject constructor(
   }
 
   @WorkerThread
-  fun getAgenda(): List<Block> {
-//    db.agendaDao().clear()
-//    db.agendaDao().insertAgendaItems(blocks)
+  fun getAgenda(): LiveData<List<Block>> {
     return db.agendaDao().getAgendaItems()
   }
 

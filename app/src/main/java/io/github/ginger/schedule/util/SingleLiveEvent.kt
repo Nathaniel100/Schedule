@@ -10,7 +10,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
 
   private val handled = AtomicBoolean(false)
 
-  override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
+  override fun observe(owner: LifecycleOwner, observer: Observer<in T?>) {
     super.observe(owner, Observer { t ->
       if (handled.compareAndSet(true, false)) {
         observer.onChanged(t)

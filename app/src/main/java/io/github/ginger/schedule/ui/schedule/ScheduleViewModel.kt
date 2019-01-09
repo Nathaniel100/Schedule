@@ -23,6 +23,7 @@ import javax.inject.Named
 import kotlin.coroutines.CoroutineContext
 
 class ScheduleViewModel @Inject constructor(
+  val timeZoneId: ZoneId,
   private val loadAgendaUseCase: LoadAgendaUseCase,
   private val addAgendaUseCase: AddAgendaUseCase,
   @Named("IO") private val io: CoroutineContext,
@@ -44,29 +45,25 @@ class ScheduleViewModel @Inject constructor(
       .appendLiteral(":")
       .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
       .toFormatter()
-  private val loadAgendaResult = MutableLiveData<Result<List<Block>>>()
-  val agenda: LiveData<List<Block>>
-  val timeZoneId: ZoneId = ZoneId.systemDefault()
+  val agenda: LiveData<List<Block>> = loadAgendaUseCase.observe().map {
+    (it as? Result.Success)?.data ?: emptyList()
+  }
   val title = MutableLiveData<String>()
   val startTime = MutableLiveData<String>()
   val endTime = MutableLiveData<String>()
   val backEvent = SingleLiveEvent<Void>()
+  val errorEvent = SingleLiveEvent<Exception>()
 
   init {
-    agenda = loadAgendaResult.map {
-      (it as? Result.Success)?.data ?: emptyList()
-    }
-    CoroutineScope(ui).launch {
-      loadAgendaResult.value = withContext(io) {
-        loadAgendaUseCase(Unit)
-      }
+    CoroutineScope(io).launch {
+      loadAgendaUseCase(Unit)
     }
   }
 
   fun addAgenda() {
     CoroutineScope(ui).launch {
       val block = createBlock() ?: return@launch
-      loadAgendaResult.value = withContext(io) {
+      withContext(io) {
         addAgendaUseCase(block)
       }
       backEvent.call()
@@ -85,6 +82,7 @@ class ScheduleViewModel @Inject constructor(
       )
     } catch (e: DateTimeException) {
       Timber.e(e)
+      errorEvent.value = e
       null
     }
 

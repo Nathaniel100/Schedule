@@ -7,6 +7,7 @@ import dagger.Provides
 import io.github.ginger.schedule.ScheduleApp
 import io.github.ginger.schedule.repository.db.AgendaDatabase
 import kotlinx.coroutines.Dispatchers
+import org.threeten.bp.ZoneId
 import javax.inject.Named
 import javax.inject.Singleton
 import kotlin.coroutines.CoroutineContext
@@ -32,5 +33,9 @@ class AppModule {
     Room.databaseBuilder(applicationContext, AgendaDatabase::class.java, "agenda.db")
       .fallbackToDestructiveMigration()
       .build()
+
+  @Singleton
+  @Provides
+  fun provideZoneId(): ZoneId = ZoneId.systemDefault()
 
 }
