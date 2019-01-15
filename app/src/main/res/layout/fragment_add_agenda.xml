@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+  <data>
+    <variable
+      name="viewModel"
+      type="io.github.ginger.schedule.ui.schedule.ScheduleViewModel"/>
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".ui.schedule.ScheduleActivity"
+    >
+
+    <EditText
+      android:id="@+id/input_title"
+      android:layout_width="0dp"
+      android:layout_height="48dp"
+      android:layout_marginTop="20dp"
+      android:hint="@string/title"
+      android:text="@={viewModel.addAgendaModel.title}"
+      android:textAppearance="@style/TextAppearance.Schedule.Input"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+    <EditText
+      android:id="@+id/input_start_time"
+      android:layout_width="0dp"
+      android:layout_height="48dp"
+      android:layout_marginTop="20dp"
+      android:hint="@string/start_time"
+      android:text="@={viewModel.addAgendaModel.startTime}"
+      android:textAppearance="@style/TextAppearance.Schedule.Input"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/input_title"
+      />
+    <EditText
+      android:id="@+id/input_end_time"
+      android:layout_width="0dp"
+      android:layout_height="48dp"
+      android:layout_marginTop="20dp"
+      android:hint="@string/end_time"
+      android:text="@={viewModel.addAgendaModel.endTime}"
+      android:textAppearance="@style/TextAppearance.Schedule.Input"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/input_start_time"
+      />
+    <EditText
+      android:id="@+id/input_type"
+      android:layout_width="0dp"
+      android:layout_height="48dp"
+      android:layout_marginTop="20dp"
+      android:hint="@string/type"
+      android:text="@={viewModel.addAgendaModel.type}"
+      android:textAppearance="@style/TextAppearance.Schedule.Input"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/input_end_time"
+      />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

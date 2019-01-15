@@ -1,11 +1,15 @@
 package io.github.ginger.schedule.domain.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import org.threeten.bp.ZonedDateTime
 
 /**
  * Defines a block of time associated with the conference. For example, a span of time denotes the
  * time when codelabs are offered, or when lunch is provided, etc.
  */
+@Entity(tableName = "agenda")
 data class Block(
   /**
    * The title of the block. Example, "Sandbox".
@@ -40,5 +44,12 @@ data class Block(
   /**
    * End time
    */
-  val endTime: ZonedDateTime
+  val endTime: ZonedDateTime,
+
+  /**
+   * Id
+   */
+  @ColumnInfo(name = "_id")
+  @PrimaryKey(autoGenerate = true)
+  val id: Int = 0
 )

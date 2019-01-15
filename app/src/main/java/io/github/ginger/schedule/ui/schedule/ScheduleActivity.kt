@@ -1,11 +1,17 @@
 package io.github.ginger.schedule.ui.schedule
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
 import io.github.ginger.schedule.R
 import io.github.ginger.schedule.util.inTransaction
+import io.github.ginger.schedule.util.showToast
+import io.github.ginger.schedule.util.viewModelProvider
 import kotlinx.android.synthetic.main.activity_schedule.*
+import org.threeten.bp.DateTimeException
+import timber.log.Timber
+import javax.inject.Inject
 
 class ScheduleActivity : DaggerAppCompatActivity() {
 
@@ -13,22 +19,30 @@ class ScheduleActivity : DaggerAppCompatActivity() {
     const val FRAGMENT_CONTAINER = R.id.fragment_container
   }
 
+  @Inject
+  lateinit var viewModelFactory: ViewModelProvider.Factory
+  lateinit var viewModel: ScheduleViewModel
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    viewModel = viewModelProvider(viewModelFactory)
+    viewModel.errorEvent.observe(this, Observer {
+      it?.run {
+        Timber.e(this)
+        when(this) {
+          is DateTimeException -> showToast(getString(R.string.error_time_format))
+          else -> showToast(localizedMessage)
+        }
+      }
+    })
     setContentView(R.layout.activity_schedule)
     setSupportActionBar(toolbar)
 
-    fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        .setAction("Action", null).show()
-    }
-
     if (savedInstanceState == null) {
       supportFragmentManager.inTransaction {
-        add(FRAGMENT_CONTAINER, ScheduleFragment(), "ScheduleFragment")
+        add(FRAGMENT_CONTAINER, ScheduleFragment())
       }
     }
-
   }
 
 }

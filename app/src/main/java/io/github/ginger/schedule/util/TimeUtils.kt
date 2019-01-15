@@ -6,7 +6,7 @@ import org.threeten.bp.ZonedDateTime
 
 object TimeUtils {
 
-  fun zonedTime(time: ZonedDateTime, zoneId: ZoneId = ZoneId.systemDefault()): ZonedDateTime {
+  fun zonedTime(time: ZonedDateTime, zoneId: ZoneId): ZonedDateTime {
     return ZonedDateTime.ofInstant(time.toInstant(), zoneId)
   }
 }

@@ -1,5 +1,7 @@
 package io.github.ginger.schedule.util
 
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -21,14 +23,32 @@ inline fun <reified VM : ViewModel> Fragment.activityViewModel(
   viewModelFactory: ViewModelProvider.Factory
 ) = ViewModelProviders.of(requireActivity(), viewModelFactory).get(VM::class.java)
 
+fun FragmentActivity.showToast(message: String) {
+  Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Fragment.showToast(message: String) {
+  activity?.run {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+  }
+}
+
+fun <T: View> Fragment.activityViewId(id: Int): T {
+  return requireActivity().findViewById(id)
+}
+
+
 fun <T, R> LiveData<T>.map(body: (T) -> R): LiveData<R> {
   return Transformations.map(this, body)
 }
 
+fun <T, R> LiveData<T>.switchMap(body: (T) -> LiveData<R>): LiveData<R> {
+  return Transformations.switchMap(this, body)
+}
+
 suspend fun <R> safeApiCall(call: suspend () -> R): Result<R> {
   return try {
-    val r = call()
-    Result.Success(r)
+    Result.Success(call())
   } catch (e: Exception) {
     Result.Error(e)
   }

@@ -13,5 +13,3 @@ abstract class BaseUseCase<in P, R> {
 
   abstract suspend fun execute(parameters: P): R
 }
-
-suspend operator fun <R> BaseUseCase<Unit, R>.invoke(): Result<R> = this(Unit)
